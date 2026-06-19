@@ -11,7 +11,7 @@ jobs:
     env:
       NUGET_CERT_REVOCATION_MODE: offline
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
     - name: Setup .NET for windows build
       uses: actions/setup-dotnet@v3
       with:
@@ -30,7 +30,7 @@ jobs:
   build-linux:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
     - name: Setup .NET for linux build
       uses: actions/setup-dotnet@v3
       with:
@@ -53,7 +53,7 @@ jobs:
     env:
       NUGET_CERT_REVOCATION_MODE: offline
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
     - name: Setup .NET for macos build
       uses: actions/setup-dotnet@v3
       with:
@@ -83,7 +83,7 @@ jobs:
     if: startsWith(github.ref, 'refs/tags')
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
     - name: Setup .NET for AU build
       uses: actions/setup-dotnet@v3
       with:
@@ -149,7 +149,7 @@ jobs:
     if: startsWith(github.ref, 'refs/tags')
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Get tag
         id: vars
         run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
