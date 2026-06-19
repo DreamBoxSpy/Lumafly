@@ -12,6 +12,9 @@
       <PublishSingleFile>true</PublishSingleFile>
       <PublishTrimmed>true</PublishTrimmed>
       <JsonSerializerIsReflectionEnabledByDefault>true</JsonSerializerIsReflectionEnabledByDefault>
+
+      <!-- Suppress warning because the entire assembly is preserved -->
+      <NoWarn>IL2026;IL2057;$(NoWarn)</NoWarn>
     </PropertyGroup>
     
     <!-- Avalonia Files -->

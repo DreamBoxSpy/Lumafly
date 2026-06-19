@@ -81,7 +81,7 @@
                 <StackPanel>
                     <TextBox
                         x:CompileBindings="False"
-                        Watermark="{ext:Localize XAML_SearchAuthor}"
+                        PlaceholderText="{ext:Localize XAML_SearchAuthor}"
                         BorderThickness="0"
                         Margin="3 2"
                         Text="{Binding AuthorSearch}"/>
