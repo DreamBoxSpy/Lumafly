@@ -269,6 +269,7 @@ namespace Lumafly
             string content = JsonSerializer.Serialize(this, new JsonSerializerOptions()
             {
                 WriteIndented = true,
+                
             });
 
             GetOrCreateDirPath();

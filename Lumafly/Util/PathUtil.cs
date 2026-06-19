@@ -69,28 +69,30 @@ namespace Lumafly.Util
 
         private static async Task<string> SelectMacApp(Window parent, bool fail)
         {
-            // use old API because of inability to rigorously test
-            #pragma warning disable CS0618
+            //Require more test!!!!!!!
             
-            var dialog = new OpenFileDialog
-            {
-                Title = Resources.PU_SelectApp,
-                Directory = "/Applications",
-                AllowMultiple = false
-            };
-            dialog.Filters?.Add(new FileDialogFilter { Extensions = { "app" } });
-            
-            #pragma warning restore CS0618
-
             while (true)
             {
-                string[]? result = await dialog.ShowAsync(parent);
-                if (result is null or { Length: 0 })
+                var result = await parent.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions()
+                {
+                    Title = Resources.PU_SelectApp,
+                    SuggestedStartLocation = await parent.StorageProvider.TryGetFolderFromPathAsync("/Applications"),
+                    AllowMultiple = false,
+                    FileTypeFilter = new[]
+                {
+                    new FilePickerFileType("macOS Application")
+                    {
+                        Patterns = new[] { "*.app" }
+                    },
+                }
+                });
+
+                if (result is null or { Count: 0 })
                 {
                     await MessageBoxUtil
                         .GetMessageBoxStandardWindow(Resources.PU_InvalidPathTitle, Resources.PU_NoSelectMac).ShowAsPopupAsync(AvaloniaUtils.GetMainWindow());
                 }
-                else if (ValidateWithSuffix(result[0]) is not var (managed, suffix))
+                else if (ValidateWithSuffix(result[0].Path.LocalPath) is not var (managed, suffix))
                 {
                     var res = await MessageBoxUtil.GetMessageBoxCustomWindow(new MessageBoxCustomParams()
                     {

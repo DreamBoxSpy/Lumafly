@@ -51,7 +51,7 @@ namespace Lumafly.ViewModels
         private LoadingViewModel _loadingPage { get; set; }
 
         [UsedImplicitly]
-        private ViewModelBase Content => Loading || SelectedTabIndex < 0 ? LoadingPage : Tabs[SelectedTabIndex].Item;
+        public ViewModelBase Content => Loading || SelectedTabIndex < 0 ? LoadingPage : Tabs[SelectedTabIndex].Item;
         public IBrush BorderBrush => new SolidColorBrush(Color.FromRgb(0x28, 0x28, 0x28));
         public Thickness BorderThickness => new(1);
         public CornerRadius CornerRadius => new(3);
